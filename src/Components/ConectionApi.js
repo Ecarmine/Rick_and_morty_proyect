@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import Cards from "./Cards";
 
-function Conection_api() {
+function ConectionApi() {
   //creacion de hooks
   const [ricks, setRicks] = useState([]);
 
@@ -11,8 +12,8 @@ function Conection_api() {
   //   funcion para acceder a los datos
   const getData = () => {
     axios.get(endPoint).then((res) => {
-      console.log(res.data);
-      setRicks(res.data);
+      //   console.log(res.data.results);
+      setRicks(res.data.results);
     });
   };
 
@@ -20,7 +21,13 @@ function Conection_api() {
     getData();
   }, []);
 
-  return <></>;
+  console.log(ricks);
+
+  return (
+    <>
+      <Cards allCaracters={ricks}></Cards>
+    </>
+  );
 }
 
-export default Conection_api;
+export default ConectionApi;
